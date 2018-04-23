@@ -68,7 +68,7 @@ static NSMutableArray* currentAlertArray = nil;
                                                          alertType:type
                                                      alertPosition:position];
     
-    [alert show:nil didHide:didHide];
+    [alert show:nil didBegin:nil didHide:didHide];
     
     return alert;
     
