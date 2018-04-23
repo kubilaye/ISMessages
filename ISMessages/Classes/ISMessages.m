@@ -229,9 +229,10 @@ static NSMutableArray* currentAlertArray = nil;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         _beginning(true);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self performSelectorOnMainThread:@selector(showInMain) withObject:nil waitUntilDone:NO];
+        });
     });
-    
-    [self performSelectorOnMainThread:@selector(showInMain) withObject:nil waitUntilDone:NO];
     
 }
 
