@@ -121,7 +121,7 @@
                                                                                       preferredStyle:UIAlertControllerStyleAlert];
                     [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
                     [self presentViewController:alertController animated:YES completion:nil];
-                } didHide:nil];
+                } didBegin:nil didHide:nil];
                 
             }
             
@@ -143,7 +143,7 @@
                 
                 alert.alertViewBackgroundColor = [UIColor colorWithRed:96.f/255.f green:184.f/255.f blue:237.f/255.f alpha:1.f];
                 
-                [alert show:nil didHide:^(BOOL finished) {
+                [alert show:nil didBegin:nil didHide:^(BOOL finished) {
                     NSLog(@"Custom alert without image did hide.");
                 }];
                 

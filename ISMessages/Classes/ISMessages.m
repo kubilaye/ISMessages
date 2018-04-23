@@ -41,6 +41,7 @@ static CGFloat const kDefaulInset = 8.f;
 // callbacks
 
 @property handler handler;
+@property beginning beginning;
 @property completion completion;
 
 @end
@@ -210,7 +211,7 @@ static NSMutableArray* currentAlertArray = nil;
     
 }
 
-- (void)show:(handler)handler didHide:(completion)didHide {
+- (void)show:(handler)handler didBegin:(beginning)didBegin didHide:(completion)didHide {
     
     if (handler) {
         _handler = handler;
@@ -218,9 +219,17 @@ static NSMutableArray* currentAlertArray = nil;
         [self.view addGestureRecognizer:tapGesture];
     }
     
+    if (didBegin) {
+        _beginning = didBegin;
+    }
+    
     if (didHide) {
         _completion = didHide;
     }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _beginning(true);
+    });
     
     [self performSelectorOnMainThread:@selector(showInMain) withObject:nil waitUntilDone:NO];
     
@@ -468,6 +477,7 @@ static NSMutableArray* currentAlertArray = nil;
     if (_completion) {
         _completion(YES);
     }
+    _beginning = nil;
 }
 
 

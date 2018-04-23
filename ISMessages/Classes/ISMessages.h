@@ -10,6 +10,7 @@
 
 // Callback blocks
 typedef void(^handler)(void);
+typedef void(^beginning)(BOOL started);
 typedef void(^completion)(BOOL finished);
 
 typedef NS_ENUM(NSInteger, ISAlertType) {
@@ -95,7 +96,7 @@ typedef NS_ENUM(NSInteger, ISAlertPosition) {
  handler is callback block
  */
 
-- (void)show:(handler)handler didHide:(completion)didHide;
+- (void)show:(handler)handler didBegin:(beginning)didBegin didHide:(completion)didHide;
 
 /**
  @author Ilya Inyushin
