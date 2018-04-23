@@ -227,7 +227,7 @@ static NSMutableArray* currentAlertArray = nil;
         _completion = didHide;
     }
     
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         _beginning(true);
         dispatch_async(dispatch_get_main_queue(), ^{
             [self performSelectorOnMainThread:@selector(showInMain) withObject:nil waitUntilDone:NO];
